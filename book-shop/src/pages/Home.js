@@ -47,20 +47,10 @@ function Home() {
                 <h2>Recomended books</h2>
 
                 <div className="books">
-                    { books.map(book => <RecomendedBook key={book._id} {...book}/>) }
-                    {/* <div className="card">
-                        <div className="image">
-                            <img src="{{SingleBook.img}}" />
-                        </div>
-                        <div className="details">
-                            <div className="center">
-                                <p>Book Description</p>
-                                <Link to={"/books/:bookId"} className="button">
-                                    Details
-                                </Link>
-                            </div>
-                        </div>
-                    </div> */}
+                    { books.length > 0 
+                        ? books.map(book => <RecomendedBook key={book._id} {...book}/>)
+                        : <h2>No Books Yet!</h2>
+                    }
                 </div>
             </div>
         </section>

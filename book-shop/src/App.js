@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Edit from "./pages/Edit";
 import Create from "./pages/Create";
+import Catalog from "./pages/Catalog";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/register" exact Component={ Register } />
                 <Route path="/edit/:bookId" exact Component={ Edit } />
                 <Route path="/create" exact Component={ Create } />
+                <Route path="/catalog" exact Component={ Catalog } />
 
             </Routes>
         </BrowserRouter>
