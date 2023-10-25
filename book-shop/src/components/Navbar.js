@@ -9,10 +9,9 @@ function Navbar({
   return (
     <div className='navbar'>
         <div className="navbar-left">
-            <p>BookShop</p>
+        <Link to={'/'}>BookShop</Link>
         </div>
         <div className="navbar-right">
-            <Link to={'/'}>Home</Link>
             <Link to={'/catalog'}>Catalog</Link>
 
             {isLoggedIn.isLoggedIn && (

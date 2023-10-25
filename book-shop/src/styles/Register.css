@@ -6,7 +6,7 @@
     align-items: center;
 }
 .loginContainer form{
-    background-color: #7d5ba6;
+    background-color: rgba(170, 95, 217, 0.583);
     border-radius: 30px;
     height: 80%;
     width: 30%;
@@ -45,11 +45,12 @@ button{
     cursor: pointer;
     width: 40%;
     color: black;
+    background-color: rgba(170, 95, 217, 0.893);
 }
 
 button:hover{
     transform: scale(1.125);  
     border-color: rgba(255, 255, 255, 0.9);
-    filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
+    filter: drop-shadow(0 10px 5px rgba(142, 142, 142, 0));
     transition: all .3s ease;    
 }

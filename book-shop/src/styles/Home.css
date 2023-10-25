@@ -1,0 +1,137 @@
+.main{
+    max-width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+a{
+    text-decoration: none;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.filter{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.582);
+}
+
+.content{
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    margin: 0px auto;
+    max-height: 400px;
+    margin-bottom: 80px;
+}
+
+.content_info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+h1{
+    font-size: 3rem;
+    letter-spacing: 6px;
+}
+h2{
+    font-style: italic;
+    font-size: 40px;
+    font-weight: 300;
+}
+p{
+    font-size: 20px;
+}
+.button{
+    margin: auto;
+    color: white;
+    background-color: #b17dec;
+    cursor: pointer;
+    font-size: 20px;
+    letter-spacing: 4px;
+    border-radius: 10px;
+    border: none;
+    padding: 6px 8px;
+    width: 150px;
+}
+
+.button:hover{
+    transform: scale(1.2);
+    transition: all .3s ease; 
+}
+
+.books{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+}
+.recomended{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.recomended h2{
+    margin: auto;
+    margin-bottom: 60px;
+    z-index: 2;
+    color: white;
+}
+.card {
+    transform: translate(0%,0%);
+    width: 300px;
+    height: 400px;
+    background: #000;
+    box-shadow: rgb(30, 49, 70) 0px 20px 30px -10px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card .image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.card .image img {
+    height: 100%;
+    transition: .5s;
+}
+.card:hover .image img {
+    opacity: .5;
+    transform: translateX(30%);
+}
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100%;
+    background: #b17dec;
+    transition: .5s;
+    transform-origin: left;
+    transform: perspective(2000px) rotateY(-90deg);
+}
+.card:hover .details {
+    transform: perspective(2000px) rotateY(0deg);
+}
+.card .details .center {
+    padding: 20px 10px;
+    text-align: center;
+    background: #fff;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.card .details .center p {
+    margin: 10px 0;
+    padding: 0;
+    color: #262626;
+}
