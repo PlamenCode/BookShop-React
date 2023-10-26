@@ -12,8 +12,10 @@ function Navbar({
     function onLogoutClick(){
         changeState(false);
         localStorage.removeItem('auth');
+        localStorage.removeItem('userId');
         navigate('/');
-    }
+    };
+
   return (
     <div className='navbar'>
         <div className="navbar-left">

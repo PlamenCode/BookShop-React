@@ -4,36 +4,42 @@ import { useParams } from 'react-router-dom';
 require('../styles/Details.css');
 
 function Details(){
-    // const [book, setBook] = useState({});
     const params = useParams()
+    const bookId = params.id;
+    const [book, setBook] = useState({});
+    let hasError = false
 
-    console.log(params);
-    useEffect(()=> {
-        console.log(params);
-    })
+    useEffect(() => {
+        fetch(`http://localhost:4200/ReactDef/data/${bookId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setBook(data);
+            })
+            .catch((err) => {
+                hasError = err;
+            })
+    }, []);
+
     return(
-        <section className="content">
+        <section className="details-content">
+            { hasError ? <h1>{hasError.message}</h1> : <></>}
 
-            {/* <h1>{{errorMsg}}</h1> 
-
-            <div className="container">
-                <img src="{{bookDetails.img}}" alt="no img" />
+            <div className="details-container">
+                <img src={book.img} alt="no img" />
             </div>
 
-            <div className="container">
-
-                <h1>DETAILS about "{bookDetails.name}"</h1>
-                <p>Author: {bookDetails.author}</p>
-                <p>Price: {bookDetails.price}$</p>
-                <p>Description: {bookDetails.description}</p>
+            <div className="details-container">
+                <h1>{book.name}</h1>
+                <p>Author: {book.author}</p>
+                <p className='bold'>Price: {book.price}$</p>
+                <p><span className='bold'>Description:</span> {book.description}</p>
             </div>
-         */}
-            <div className="buttons">
+        
+
+            <div className="details-buttons">
                 <button>Edit</button>
                 <button>Delete</button>
-            </div>
 
-            <div className="buttons">
                 <button>Remove From Cart</button>
                 <button>Add To Cart</button>
             </div>

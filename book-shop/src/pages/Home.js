@@ -10,7 +10,6 @@ function Home() {
         fetch('http://localhost:4200/ReactDef/data/recent')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setbooks(data)
             })
             .catch((err) => {

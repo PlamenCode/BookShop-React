@@ -18,6 +18,7 @@ function Login({ changeState }) {
             .then(res => res.json())
             .then(data => {
                 localStorage.setItem('auth', data.token);
+                localStorage.setItem('userId', data.userId);
                 changeState(true);
                 setInputs({});
                 navigate('/');

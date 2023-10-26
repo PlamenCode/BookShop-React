@@ -9,7 +9,6 @@ function Catalog(){
         fetch('http://localhost:4200/ReactDef/data')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setBooks(data);
             })
             .catch((err) => {
