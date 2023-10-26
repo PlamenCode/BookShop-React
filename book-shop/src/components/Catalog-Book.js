@@ -4,8 +4,8 @@ require('../styles/Catalog-Book.css')
 
 function CatalogBook( book ){
     return(
-        <li className="container">
-            <div className="wrapper">
+        <li>
+            <div className="catalog-book-wrapper">
                 <img src={book.img} alt='no book'/>
                 <h3>{book.name}</h3>
                 <p>by {book.author}</p>

@@ -14,7 +14,7 @@ function Navbar({
         <div className="navbar-right">
             <Link to={'/catalog'}>Catalog</Link>
 
-            {isLoggedIn.isLoggedIn && (
+            {isLoggedIn && (
                 <>
                 <Link to={'/create'}>Create Offer</Link>
                 <Link to={'/cart'}>Cart</Link>
@@ -22,7 +22,7 @@ function Navbar({
                 </>
             )}
 
-            {!isLoggedIn.isLoggedIn && (
+            {!isLoggedIn && (
                 <>
                 <Link to={'/login'}>Login</Link>
                 <Link to={'/register'}>Register</Link>

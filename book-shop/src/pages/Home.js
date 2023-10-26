@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import img from "../assets/backgrond1.jpg";
 import { Link } from "react-router-dom";
 import RecomendedBook from "../components/Recomended-Book";
 require("../styles/Home.css");
@@ -22,16 +21,15 @@ function Home() {
 
     return (
         <section className="main">
-            <div className="container">
-                <img src={img} alt="" />
+            <div className="main-container">
             </div>
 
             <div className="filter"></div>
 
-            <div className="content">
+            <div className="home-content">
                 <h1>Wellcome</h1>
 
-                <div className="content_info">
+                <div className="home-content-info">
                     <h2>Buy and Sell your textbooks for the best price</h2>
                     <p>
                         From applied literature to educatonal resources, we have a lot of

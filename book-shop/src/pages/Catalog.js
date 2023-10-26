@@ -22,7 +22,6 @@ function Catalog(){
             <h2>Book Library</h2>
 
            <div className="catalog-books">
-            <h1>book</h1>
                 { books.length < 1 
                     ? <h2>No Published Books Yet</h2>  
                     : books.map (book => <CatalogBook key={book._id} {...book} />)  
