@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -14,25 +14,30 @@ import Details from "./pages/Details";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const changeState = (state) => {
+    setIsLoggedIn(state);
+  }
+
+
   useEffect(() => {
     if(localStorage.getItem('auth')){
         setIsLoggedIn(true);
     } else{
         setIsLoggedIn(false)
     }
-  })
+  }, [])
   return (
       <div className="App">
-          <Navbar isLoggedIn={isLoggedIn} />
+          <Navbar isLoggedIn={isLoggedIn} changeState={changeState} />
 
           <Routes>
-            <Route path="/" exact Component={Home} />
-            <Route path="/login" exact Component={Login} />
-            <Route path="/register" exact Component={Register} />
-            <Route path="/edit/:bookId" exact Component={Edit} />
-            <Route path="/create" exact Component={Create} />
-            <Route path="/catalog" exact Component={Catalog} />
-            <Route path="/books/:id" exact Component={Details} />
+            <Route path="/" exact element={<Home />} />
+            <Route path="/login" exact element={<Login changeState={changeState}/>}/>
+            <Route path="/register" exact element={<Register changeState={changeState}/>}/>
+            <Route path="/edit/:bookId" exact element={<Edit />} />
+            <Route path="/create" exact element={<Create />} />
+            <Route path="/catalog" exact element={<Catalog />} />
+            <Route path="/books/:id" exact element={<Details />} />
           </Routes>
       </div>
   );

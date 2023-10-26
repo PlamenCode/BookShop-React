@@ -1,11 +1,19 @@
 import React, {  } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css'
 
 function Navbar({
-    isLoggedIn 
+    isLoggedIn,
+    changeState
 }) {
-    console.log(isLoggedIn);
+
+    const navigate = useNavigate();
+
+    function onLogoutClick(){
+        changeState(false);
+        localStorage.removeItem('auth');
+        navigate('/');
+    }
   return (
     <div className='navbar'>
         <div className="navbar-left">
@@ -18,7 +26,7 @@ function Navbar({
                 <>
                 <Link to={'/create'}>Create Offer</Link>
                 <Link to={'/cart'}>Cart</Link>
-                <Link to={'/logout'}>logout</Link>
+                <a onClick={onLogoutClick}>Logout</a>
                 </>
             )}
 

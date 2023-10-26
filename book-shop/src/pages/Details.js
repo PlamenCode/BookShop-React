@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 require('../styles/Details.css');
 
 function Details(){
-    const [book, setBook] = useState({});
+    // const [book, setBook] = useState({});
     const params = useParams()
 
     console.log(params);

@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 require('../styles/Login.css');
 
-function Login() {
+function Login({ changeState }) {
     const [inputs, setInputs] = useState({});
-    const [error, setError] = useState({});
     const navigate = useNavigate();
 
-    const loginSubmit = (event) => {
+    const onLoginSubmit = (event) => {
         event.preventDefault();
         const options = {
             method: 'POST',
@@ -19,10 +18,11 @@ function Login() {
             .then(res => res.json())
             .then(data => {
                 localStorage.setItem('auth', data.token);
+                changeState(true);
                 setInputs({});
                 navigate('/');
             })
-            .catch(err => setError(err))
+            .catch(err => console.log(err))
         
     };
 
@@ -35,7 +35,7 @@ function Login() {
     
     return (
         <div className="loginContainer">
-            <form  onSubmit={loginSubmit}>
+            <form onSubmit={onLoginSubmit}>
                 <h1>Login</h1>
                 <div className="input">
                     <label htmlFor="email">Email</label>
