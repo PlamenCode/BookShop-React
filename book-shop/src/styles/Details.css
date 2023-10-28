@@ -1,9 +1,9 @@
 .details-content{
-    width: 100%;
     height: 100vh;
     padding: 60px;
     display: flex;
     gap: 100px;
+    overflow: hidden;
 }
 .bold{
     font-size: 26px;
@@ -30,4 +30,5 @@
 }
 .details-buttons button{
     width: 100%;
+    margin-bottom: 20px;
 }

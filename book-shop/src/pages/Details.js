@@ -7,13 +7,21 @@ function Details(){
     const params = useParams()
     const bookId = params.id;
     const [book, setBook] = useState({});
-    let hasError = false
+    const [isOwner, setIsOwner] = useState(false)
+    const [isUser, setIsUser] = useState(false);
+    let hasError = false;
 
     useEffect(() => {
+        if(localStorage.getItem('auth')){
+            setIsUser(true);
+        }
         fetch(`http://localhost:4200/ReactDef/data/${bookId}`)
             .then((res) => res.json())
             .then((data) => {
                 setBook(data);
+                if(data.ownerId.toString() == localStorage.getItem('userId').toString()){
+                    setIsOwner(true);
+                }
             })
             .catch((err) => {
                 hasError = err;
@@ -37,11 +45,18 @@ function Details(){
         
 
             <div className="details-buttons">
-                <button>Edit</button>
-                <button>Delete</button>
-
-                <button>Remove From Cart</button>
-                <button>Add To Cart</button>
+                { isOwner ? <div>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                    : <></>
+                }               
+                { !isOwner && isUser ? <div>
+                        <button>Remove From Cart</button>
+                        <button>Add To Cart</button>
+                    </div>
+                    : <></>
+                }
             </div>
         </section>
     )
