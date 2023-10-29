@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 require('../styles/Details.css');
 
 function Details(){
-    const params = useParams()
-    const bookId = params.id;
     const [book, setBook] = useState({});
     const [isOwner, setIsOwner] = useState(false)
     const [isUser, setIsUser] = useState(false);
-    let hasError = false;
+    const [error, setError] = useState(false);
+    
+    const params = useParams();
+    const bookId = params.id;
 
     useEffect(() => {
         if(localStorage.getItem('auth')){
@@ -19,18 +20,18 @@ function Details(){
             .then((res) => res.json())
             .then((data) => {
                 setBook(data);
-                if(data.ownerId.toString() == localStorage.getItem('userId').toString()){
+                if(data.ownerId.toString() === localStorage.getItem('userId').toString()){
                     setIsOwner(true);
                 }
             })
             .catch((err) => {
-                hasError = err;
+                setError(err.message)
             })
     }, []);
 
     return(
         <section className="details-content">
-            { hasError ? <h1>{hasError.message}</h1> : <></>}
+            { error ? <h1>{error.message}</h1> : <></>}
 
             <div className="details-container">
                 <img src={book.img} alt="no img" />
