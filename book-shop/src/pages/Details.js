@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 require('../styles/Details.css');
 
 function Details(){
@@ -11,6 +11,7 @@ function Details(){
     
     const params = useParams();
     const bookId = params.id;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(localStorage.getItem('auth')){
@@ -29,6 +30,29 @@ function Details(){
             })
     }, []);
 
+    function editClick(){
+        navigate(`/edit/${bookId}`, { state: book });
+    };
+
+    function onDeleteClick(){
+        if(isOwner){
+            const options = {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ user: localStorage.getItem('userId') })
+            }
+            fetch(`http://localhost:4200/ReactDef/data/${bookId}`, options)
+            .then(res => res.json())
+            .then(data => {
+                navigate(`/catalog`);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    };
+
+    
     return(
         <section className="details-content">
             { error ? <h1>{error.message}</h1> : <></>}
@@ -47,8 +71,8 @@ function Details(){
 
             <div className="details-buttons">
                 { isOwner ? <div>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={editClick}>Edit</button>
+                        <button onClick={onDeleteClick}>Delete</button>
                     </div>
                     : <></>
                 }               
