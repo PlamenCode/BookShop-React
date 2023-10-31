@@ -3,6 +3,12 @@
     align-items: center;
     text-align: center;
 }
+.cart-cover h3{
+    font-size: 40px;
+    letter-spacing: 4px;
+}
+
+
 
 .cart-container{
     background-color: #7d5ba6;
@@ -15,28 +21,28 @@
     overflow: hidden;
     margin: 20px auto;
     padding: 20px 30px;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap: 20px;
 }
-.cart-cover h3{
-    font-size: 40px;
-    letter-spacing: 4px;
+
+ .cart-container p, .cart-container h3, .cart-container .buttons{
+    width: 20%;
 }
 
-.cart-cover p, .cart-cover img, .cart-cover h3, .cart-cover .buttons{
-    max-width: 25%;
+.cart-img{
+    height: 300px;
+    min-width: 250px;
+}
+.cart-img img{
+    min-height: 300px;
 }
 
-.cart-cover img{
-    max-height: 300px;
-    padding: 10px 0px;
-}
-
-.cart-cover .buttons{
+.cart-cover .card-buttons{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    min-width: 370px;
+    gap: 20px;
 }
 .cart-cover button{
     margin: auto;
@@ -44,6 +50,7 @@
     border-radius: 12px;
     border: none;
     font-size: 20px;
+    width: 90%;
 }
 .cart-cover button:hover{
     cursor: pointer;
@@ -51,4 +58,20 @@
     border-color: rgba(255, 255, 255, 0.9);
     filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
     transition: all .3s ease;    
+}
+
+.card-buttons .outline {
+    background: transparent;
+    color: #8c92ac;
+    font-size: 20px;
+    font-weight: 500;
+    border: 1px solid #8c92ac;
+    transition: all .3s ease;
+}
+  
+.card-buttons .outline:hover{
+    transform: scale(1.125);
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.9);
+    transition: all .3s ease;  
 }
