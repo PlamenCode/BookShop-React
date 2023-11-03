@@ -1,9 +1,33 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CartBook( book ){
+    const navigate = useNavigate();
+
+    function navigateDetails(){
+        navigate(`/books/${book._id}`);
+    }
+
+    function removeFromCart() {
+        const options = {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        }
+        fetch(`http://localhost:4200/ReactDef/cart/${localStorage.getItem("userId")}/${book._id}`, options)
+          .then((res) => res.json())
+          .then((data) => {
+            if(data == true){
+                window.location.reload();
+            };
+        })
+          .catch((err) => {
+            console.log(err.message);
+          });
+    }
+
     return(
-        <div class="cart">
-        <div class="cart-container">
+        <div className="cart">
+        <div className="cart-container">
             <div className="cart-img">
                 <img src={book.img} alt="" />
             </div>
@@ -12,9 +36,9 @@ function CartBook( book ){
             <p>by { book.author}</p>
             <p>${ book.price }</p>
 
-            <div class="card-buttons">
-                <button class="btn fill" >Remove from Cart</button>
-                <button class="btn outline" >Details</button>
+            <div className="card-buttons">
+                <button className="btn fill" onClick={removeFromCart}>Remove from Cart</button>
+                <button className="btn outline" onClick={navigateDetails} >Details</button>
             </div>
         </div>
         </div>

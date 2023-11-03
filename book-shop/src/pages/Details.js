@@ -28,7 +28,7 @@ function Details(){
             .catch((err) => {
                 setError(err.message)
             })
-    }, []);
+    }, [bookId]);
 
     function editClick(){
         navigate(`/edit/${bookId}`, { state: book });
