@@ -8,6 +8,7 @@ function Details(){
     const [isOwner, setIsOwner] = useState(false)
     const [isUser, setIsUser] = useState(false);
     const [error, setError] = useState(false);
+    const [isInCart, setIsInCart] = useState(false);
     
     const params = useParams();
     const bookId = params.id;
@@ -25,8 +26,14 @@ function Details(){
                     setIsOwner(true);
                 }
             })
+        fetch(`http://localhost:4200/ReactDef/cart/check/${localStorage.getItem('userId')}/${bookId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setIsInCart(data);
+            })
             .catch((err) => {
-                setError(err.message)
+                console.log(err.message);
             })
     }, [bookId]);
 
@@ -52,6 +59,16 @@ function Details(){
         }
     };
 
+    function toggleCart(){
+        fetch(`http://localhost:4200/ReactDef/cart/toggle/${localStorage.getItem('userId')}/${book._id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setIsInCart(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
+    };
     
     return(
         <section className="details-content">
@@ -77,8 +94,7 @@ function Details(){
                     : <></>
                 }               
                 { !isOwner && isUser ? <div>
-                        <button>Remove From Cart</button>
-                        <button>Add To Cart</button>
+                    <button onClick={toggleCart}> { isInCart ? 'Remove From Cart' : 'Add To Cart' }</button>
                     </div>
                     : <></>
                 }
