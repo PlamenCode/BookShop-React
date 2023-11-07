@@ -13,28 +13,31 @@ function Details(){
     const params = useParams();
     const bookId = params.id;
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         if(localStorage.getItem('auth')){
             setIsUser(true);
         }
-        fetch(`http://localhost:4200/ReactDef/data/${bookId}`)
+        fetch(`http://localhost:4200/ReactDef/data/${params.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setBook(data);
-                if(data.ownerId.toString() === localStorage.getItem('userId').toString()){
+                if(data.ownerId && data.ownerId.toString() === localStorage.getItem('userId').toString()){
                     setIsOwner(true);
                 }
             })
-        fetch(`http://localhost:4200/ReactDef/cart/check/${localStorage.getItem('userId')}/${bookId}`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setIsInCart(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
+        if( !isUser ){
+            setIsInCart(false);
+        } else {
+            fetch(`http://localhost:4200/ReactDef/cart/check/${localStorage.getItem('userId')}/${params.id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setIsInCart(data);
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                })
+        }
     }, [bookId]);
 
     function editClick(){

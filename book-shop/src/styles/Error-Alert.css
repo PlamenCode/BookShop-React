@@ -1,0 +1,11 @@
+.error-alert{
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    width: 300px;   
+    border-radius: 20px;
+    background-color: rgb(255, 88, 88);
+}
+.error-alert h1{ 
+    font-size: 10px;
+}

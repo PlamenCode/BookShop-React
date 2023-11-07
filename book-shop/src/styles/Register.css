@@ -8,7 +8,7 @@
 .loginContainer form{
     background-color: rgba(170, 95, 217, 0.583);
     border-radius: 30px;
-    height: 80%;
+    padding-bottom: 40px;
     width: 30%;
     align-items: center;
     text-align: center;
@@ -36,7 +36,7 @@ input{
     padding: 10px;
 }
 
-button{
+#submit-btn{
     border: none;
     padding: 12px 24px;
     border-radius: 24px;
@@ -44,7 +44,7 @@ button{
     letter-spacing: 2px;  
     cursor: pointer;
     width: 40%;
-    color: black;
+    color: white;
     background-color: rgba(170, 95, 217, 0.893);
 }
 

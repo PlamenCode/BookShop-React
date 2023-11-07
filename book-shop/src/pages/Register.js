@@ -52,7 +52,7 @@ function Register(){
                 </div>
 
                 <div>
-                    <button type="submit">Register</button>
+                    <button id='submit-btn' type="submit">Register</button>
                 </div>
             </form>
         </div>
