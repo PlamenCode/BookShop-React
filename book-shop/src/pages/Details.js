@@ -22,7 +22,7 @@ function Details(){
             .then((res) => res.json())
             .then((data) => {
                 setBook(data);
-                if(data.ownerId && data.ownerId.toString() === localStorage.getItem('userId').toString()){
+                if(localStorage.getItem('userId') && data.ownerId.toString() === localStorage.getItem('userId').toString()){
                     setIsOwner(true);
                 }
             })

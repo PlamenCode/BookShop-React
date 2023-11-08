@@ -14,6 +14,10 @@ function Login({ changeState }) {
 
     const onLoginSubmit = (event) => {
         event.preventDefault();
+        try {
+            if(inputs.email === '' || inputs.password === ''){
+                throw('All fields are required');
+            }
             const options = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -34,7 +38,9 @@ function Login({ changeState }) {
                 .catch(err =>{
                     setHasError(err.message)
                 })
-        
+            } catch (error) {
+                setHasError(error)
+            }
 
     };
 
@@ -48,7 +54,7 @@ function Login({ changeState }) {
     return (
         <div className="loginContainer">
             <form onSubmit={onLoginSubmit}>
-                {hasError ? <ErrorAlert errors={hasError} /> : ''}
+                {hasError ? <ErrorAlert errors={ hasError } /> : ''}
                 <h1>Login</h1>
                 <div className="input">
                     <label htmlFor="email">Email</label>
