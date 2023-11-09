@@ -40,25 +40,29 @@ function Create(){
         event.preventDefault();
         const name = event.target.name;
         const value = event.target.value.trim();
+
         if(name === 'name' && value === ''){
             setHasError(true)
-            setErrors({name: 'Name is reqired'})
+            setErrors({...errors, [name]: 'Name is reqired'})
         } else if(name === 'author' && value === ''){
-            setHasError(true)
-            setErrors({author: 'Author is reqired'})
+            setErrors(true)
+            setErrors({...errors, [name]: 'Author is reqired'})
         } else if(name === 'img' && value === ''){
             setHasError(true)
-            setErrors({img: 'IMG is reqired'})
-        } else if(name === 'description' && (value === '' || value < 10)){
-            setHasError(true)
-            setErrors({description: 'Description must be at least 10 charecters long'})
+            setErrors({...errors, [name]: 'IMG is reqired'})
         } else if(name === 'price' && value < 1 ){
             setHasError(true)
-            setErrors({price: 'Price must be above 0'})
+            setErrors({...errors, [name]: 'Price must be above 0'})
+        } else if(name === 'description'){
+            if(value.length < 10){
+                setHasError(true)
+                setErrors({...errors, [name]: 'Description must be at least 10 charecters long'})
+            } else{
+                setErrors({...errors, [name]: ''});
+            }
         } else{
-            setHasError(false)
+            setErrors({...errors, [name]: ''});
         }
-        console.log(errors);
         setInputs(values => ({...values, [name]: value}));
     }
 
@@ -101,7 +105,7 @@ function Create(){
                     </div>
             
             
-                    <button type="submit">Post Your Offer</button>
+                    <button type="submit" disabled={ hasError }>Post Your Offer</button>
                 </form>
             </section>
     )
