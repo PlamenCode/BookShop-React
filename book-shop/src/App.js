@@ -11,6 +11,7 @@ import Create from "./pages/Create";
 import Catalog from "./pages/Catalog";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
+import GuardedRoute from "./helpers/GuardedRoute";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,10 +36,12 @@ function App() {
             <Route path="/" exact element={<Home />} />
             <Route path="/login" exact element={<Login changeState={changeState}/>}/>
             <Route path="/register" exact element={<Register changeState={changeState}/>}/>
-            <Route path="/edit/:bookId" exact element={<Edit />} />
-            <Route path="/create" exact element={<Create />} />
             <Route path="/catalog" exact element={<Catalog />} />
             <Route path="/books/:id" exact element={<Details />} />
+
+
+            <Route path="/edit/:bookId" exact element={<Edit />} />
+            <Route path="/create" exact element={<Create />} />
             <Route path="/cart" exact element={<Cart />} />
           </Routes>
       </div>
