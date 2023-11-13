@@ -13,9 +13,7 @@ function RecomendedBook(
             <div className="details">
                 <div className="center">
                     <p>{book.description}</p>
-                    <Link to={`/books/${book._id}`} className="button">
-                        Details
-                    </Link>
+                    <Link to={`/books/${book._id}`} className="button">Details</Link>
                 </div>
             </div>
         </div>
