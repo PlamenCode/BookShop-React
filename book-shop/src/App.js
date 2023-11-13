@@ -11,7 +11,7 @@ import Create from "./pages/Create";
 import Catalog from "./pages/Catalog";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
-import GuardedRoute from "./helpers/GuardedRoute";
+import { RouteGuard } from "./guards/RouteGuard";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,9 +40,11 @@ function App() {
             <Route path="/books/:id" exact element={<Details />} />
 
 
-            <Route path="/edit/:bookId" exact element={<Edit />} />
-            <Route path="/create" exact element={<Create />} />
-            <Route path="/cart" exact element={<Cart />} />
+            <Route element={<RouteGuard />}>
+              <Route path="/edit/:bookId" exact element={<Edit />} />
+              <Route path="/create" exact element={<Create />} />
+              <Route path="/cart" exact element={<Cart />} />
+            </Route>
           </Routes>
       </div>
   );
