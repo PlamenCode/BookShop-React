@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import ErrorAlert from "../components/Error-Alert";
 require("../styles/Edit-Create-Form.css");
 
 function Edit() {
-    const { state } = useLocation();
-    const [inputs, setInputs] = useState(state);
     const navigate = useNavigate();
+    const params = useParams();
 
+    const [book, setBook] = useState({});
     const [hasError, setHasError] = useState(false);
     const [errors, setErrors] = useState({
         name: "",
@@ -16,6 +16,19 @@ function Edit() {
         price: "",
         description: "",
     });
+
+
+    useEffect(() => {
+        fetch(`http://localhost:4200/ReactDef/data/${params.bookId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if(!localStorage.getItem('userId') || localStorage.getItem('userId') !== data.ownerId.toString()){
+                    navigate('/login');
+                } else{
+                    setBook(data);
+                }
+            })
+    }, [])
 
     const changeHandler = (event) => {
         event.preventDefault();
@@ -48,37 +61,31 @@ function Edit() {
             setErrors({ ...errors, [name]: "" });
         }
 
-        setInputs((values) => ({ ...values, [name]: value }));
+        setBook((values) => ({ ...values, [name]: value }));
     };
 
     function onEditSubmit(event) {
         event.preventDefault();
         if (
-            !inputs.name ||
-            inputs.name == "" ||
-            !inputs.author ||
-            inputs.author == "" ||
-            !inputs.img ||
-            inputs.img == "" ||
-            !inputs.price ||
-            inputs.price == "" ||
-            !inputs.description ||
-            inputs.description == ""
-        ) {
-            return;
-        } else {
+            !book.name || book.name == "" ||
+            !book.author || book.author == "" ||
+            !book.img || book.img == "" ||
+            !book.price || book.price == "" ||
+            !book.description || book.description == ""
+        ) { return } else {
+
             const options = {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    book: inputs,
+                    book: book,
                     user: localStorage.getItem("userId"),
                 }),
             };
-            fetch(`http://localhost:4200/ReactDef/data/${state._id}`, options)
+            fetch(`http://localhost:4200/ReactDef/data/${book._id}`, options)
                 .then((res) => res.json())
                 .then((data) => {
-                    setInputs({});
+                    setBook({});
                     navigate(`/books/${data._id}`);
                 })
                 .catch((err) => {
@@ -100,7 +107,7 @@ function Edit() {
                         type="text"
                         name="name"
                         placeholder="Book name"
-                        defaultValue={state.name}
+                        defaultValue={book.name}
                         onChange={changeHandler}
                         className={errors.name ? "error" : ""}
                     />
@@ -112,7 +119,7 @@ function Edit() {
                         type="text"
                         name="author"
                         placeholder="Author"
-                        defaultValue={state.author}
+                        defaultValue={book.author}
                         onChange={changeHandler}
                         className={errors.author ? "error" : ""}
                     />
@@ -124,7 +131,7 @@ function Edit() {
                         type="text"
                         name="img"
                         placeholder="https://..."
-                        defaultValue={state.img}
+                        defaultValue={book.img}
                         onChange={changeHandler}
                         className={errors.img ? "error" : ""}
                     />
@@ -136,7 +143,7 @@ function Edit() {
                         type="number"
                         name="price"
                         placeholder="Price"
-                        defaultValue={state.price}
+                        defaultValue={book.price}
                         onChange={changeHandler}
                         className={errors.price ? "error" : ""}
                     />
@@ -148,7 +155,7 @@ function Edit() {
                         type="text"
                         name="description"
                         placeholder="Description"
-                        defaultValue={state.description}
+                        defaultValue={book.description}
                         onChange={changeHandler}
                         className={errors.description ? "error" : ""}
                     ></textarea>

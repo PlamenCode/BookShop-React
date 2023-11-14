@@ -7,7 +7,6 @@ function Details(){
     const [book, setBook] = useState({});
     const [isOwner, setIsOwner] = useState(false)
     const [isUser, setIsUser] = useState(false);
-    const [error, setError] = useState(false);
     const [isInCart, setIsInCart] = useState(false);
     
     const params = useParams();
