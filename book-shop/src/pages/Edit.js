@@ -50,10 +50,7 @@ function Edit() {
         } else if (name === "description") {
             if (value.length < 10) {
                 setHasError(true);
-                setErrors({
-                    ...errors,
-                    [name]: "Description must be at least 10 charecters long",
-                });
+                setErrors({...errors, [name]: "Description must be at least 10 charecters long" });
             } else {
                 setErrors({ ...errors, [name]: "" });
             }

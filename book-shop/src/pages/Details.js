@@ -17,7 +17,7 @@ function Details(){
         if(localStorage.getItem('auth')){
             setIsUser(true);
         }
-        fetch(`http://localhost:4200/ReactDef/data/${params.id}`)
+        fetch(`http://localhost:4200/ReactDef/data/${bookId}`)
             .then((res) => res.json())
             .then((data) => {
                 setBook(data);
@@ -28,7 +28,7 @@ function Details(){
         if( !isUser ){
             setIsInCart(false);
         } else {
-            fetch(`http://localhost:4200/ReactDef/cart/check/${localStorage.getItem('userId')}/${params.id}`)
+            fetch(`http://localhost:4200/ReactDef/cart/check/${localStorage.getItem('userId')}/${bookId}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setIsInCart(data);
