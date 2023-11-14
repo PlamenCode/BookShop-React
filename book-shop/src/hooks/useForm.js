@@ -14,7 +14,7 @@ export const useForm = (initialValues, onSubmitHandler) => {
     };
 
     const changeValues = (newValues) => {
-        //TODO check values;
+        //check values;
         setValues(newValues);
     };
 

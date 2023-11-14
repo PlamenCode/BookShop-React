@@ -94,6 +94,9 @@ function Details(){
                     </div>
                     : <></>
                 }               
+                {/* TODO The button does not change if the book has been added from the catalog
+                        catalog(book is in cart)
+                        details(add to cart is shown) */}
                 { !isOwner && isUser ? <div>
                     <button onClick={toggleCart}> { isInCart ? 'Remove From Cart' : 'Add To Cart' }</button>
                     </div>
