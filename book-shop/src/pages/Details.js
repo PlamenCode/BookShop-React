@@ -85,7 +85,6 @@ function Details(){
                 <p className='bold'>Price: {book.price}$</p>
                 <p><span className='bold'>Description:</span> {book.description}</p>
             </div>
-        
 
             <div className="details-buttons">
                 { isOwner ? <div>
