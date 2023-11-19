@@ -19,11 +19,12 @@ function Cart() {
       });
   }, []);
 
+
   return (
     <div className="cart-cover">
       <h3>Your Cart</h3>
       {books.length < 1 
-        ? <h1>No Books In Your Cart Yet</h1>
+        ? <h1>No Books have been added to you cart yet.</h1>
         : books.map( book => <CartBook key={book._id} {...book} />)
       }
     </div>

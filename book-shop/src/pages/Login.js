@@ -16,7 +16,7 @@ function Login({ changeState }) {
         event.preventDefault();
         try {
             if(inputs.email === '' || inputs.password === ''){
-                throw('All fields are required');
+                throw('All fields are required.');
             }
             const options = {
                 method: 'POST',

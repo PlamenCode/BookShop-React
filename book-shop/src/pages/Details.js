@@ -97,6 +97,7 @@ function Details(){
                         catalog(book is in cart)
                         details(add to cart is shown) */}
                 { !isOwner && isUser ? <div>
+                    
                     <button onClick={toggleCart}> { isInCart ? 'Remove From Cart' : 'Add To Cart' }</button>
                     </div>
                     : <></>
