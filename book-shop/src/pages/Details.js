@@ -16,6 +16,7 @@ function Details(){
     useEffect(() => {
         if(localStorage.getItem('auth')){
             setIsUser(true);
+            setIsInCart(false);
         }
         fetch(`http://localhost:4200/ReactDef/data/${bookId}`)
             .then((res) => res.json())
@@ -25,9 +26,7 @@ function Details(){
                     setIsOwner(true);
                 }
             })
-        if( !isUser ){
-            setIsInCart(false);
-        } else {
+        if( localStorage.getItem('auth') ){
             fetch(`http://localhost:4200/ReactDef/cart/check/${localStorage.getItem('userId')}/${bookId}`)
                 .then((res) => res.json())
                 .then((data) => {
@@ -93,9 +92,6 @@ function Details(){
                     </div>
                     : <></>
                 }               
-                {/* TODO The button does not change if the book has been added from the catalog
-                        catalog(book is in cart)
-                        details(add to cart is shown) */}
                 { !isOwner && isUser ? <div>
                     
                     <button onClick={toggleCart}> { isInCart ? 'Remove From Cart' : 'Add To Cart' }</button>
