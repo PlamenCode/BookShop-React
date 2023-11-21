@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# BookShop React defanse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to "BookShop" Online Book Store project! This platform provides a user-friendly online book store experience, allowing users to register, login, and create book offers that can be published for potential buyers. Additionally, users can browse through a catalog of books available for purchase or add books to their cart for future consideration. This Readme provides essential information about the project, its functionalities, and how to get started.
 
-## Available Scripts
+# Geting started
 
-In the project directory, you can run:
+To run the BookShop project locally, follow these steps:
 
-### `npm start`
+1.Clone the repository from 
+GitHub: git clone <https://github.com/PlamenCode/BookShop-React>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2.Install the necessary dependencies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    npm install
 
-### `npm test`
+3.Set up the database:
+Run the RestService inside the repository: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    1.npm install 
+    2.npm start
 
-### `npm run build`
+Start the application:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Access the application in your web browser:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    http://localhost:3000
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Features
+1.User Registration: New users can sign up for an account, providing their details and creating a profile.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2.User Login: Registered users can securely log in to their profiles using their credentials.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3.User Logout: Users can log out of their accounts to end their active sessions.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4.Book Offer Creation: Authenticated users can create book offers, adding details such as book title, author, description, price, and cover image.
 
-## Learn More
+5.Editing and Deleting Offers: Owners of the Book Offer have the ability to edit or delete their book offers at any time.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+6.Browse Catalog: Visitors and registered users can explore a catalog of available books for purchase.
 
-### Code Splitting
+7.Cart: Users can add books from the catalog to their Cart for future reference.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Technologies Used
+1.Frontend: HTML, CSS, JS, React
 
-### Analyzing the Bundle Size
+2.Backend: Node.js, Express.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3.Database: MongoDB
 
-### Making a Progressive Web App
+# Project Routes
+Base url - http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    1.Public Routes
+        1. Home Route - /
+        2. User Authentication Routes
+            2.1 User Login - /login
+            2.2 User Register - /register
+        3. Catalog - /catalog
+        4. Book Details - /books/:bookId
 
-### Advanced Configuration
+    2.Private Routes(Only registered Users)
+        1. Creating Offer - '/create'
+        2. Edit Offer - '/eidt/:offerId'
+        3. User Cart - '/cart'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+# RestService Routes
+Base url - http://localhost:4200/ReactDef
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    1.Data Routes
+        1.Get all available books - GET -> /data
+        2.Get Details of one book - GET -> /data/:bookId
 
-### `npm run build` fails to minify
+        3.Create book - POST -> /data
+            -logged in user required
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        4.Edit your own book - PUT -> /data/:bookId
+            -logged in user required
+            -the user must be the owner of the book
+
+        5.Delete your own book - DELETE -> /data/:bookId
+            -logged in user required
+            -the user must be the owner of the book
+
+
+    2.Cart Routes
+        1.Get all books in the user Cart - GET -> /cart/:userId
+        2.Add book to your cart - GET -> /cart/:userId/:bookId
+        3.Remove book from your cart - DELETE -> /cart/:userId/:bookId
+        4.Check if book is in cart - GET -> /cart/check/:userId/:bookId
+        5.Toggle between add/remove book - GET -> /cart/toggle/:userId/:bookId
