@@ -35,27 +35,39 @@ function Edit() {
         const name = event.target.name;
         const value = event.target.value;
 
-        if (name === "name" && value === "") {
-            setHasError(true);
-            setErrors({ ...errors, [name]: "Name is reqired" });
-        } else if (name === "author" && value === "") {
-            setErrors(true);
-            setErrors({ ...errors, [name]: "Author is reqired" });
-        } else if (name === "img" && value === "") {
-            setHasError(true);
-            setErrors({ ...errors, [name]: "IMG is reqired" });
-        } else if (name === "price" && value < 1) {
-            setHasError(true);
-            setErrors({ ...errors, [name]: "Price must be above 0" });
-        } else if (name === "description") {
-            if (value.length < 10) {
-                setHasError(true);
-                setErrors({...errors, [name]: "Description must be at least 10 charecters long" });
-            } else {
+        switch(name){
+            case 'name': 
+            case 'author':
+            case 'img': {
+                if(value === ''){
+                    setHasError(true);
+                    setErrors({...errors, [name]: `${name} is required.`})
+                } else {
+                    setErrors({ ...errors, [name]: "" });
+                }
+                break;
+            };
+            case 'price': {
+                if(value < 1){
+                    setHasError(true);
+                    setErrors({ ...errors, [name]: "Price must be above 0" });
+                } else {
+                    setErrors({ ...errors, [name]: "" });
+                }
+                break;
+            };
+            case 'description': {
+                if(value.length < 10){
+                    setHasError(true);
+                    setErrors({...errors, [name]: "Description must be at least 10 charecters long" });
+                } else {
+                    setErrors({ ...errors, [name]: "" });
+                }
+                break;
+            };
+            default : {
                 setErrors({ ...errors, [name]: "" });
             }
-        } else {
-            setErrors({ ...errors, [name]: "" });
         }
 
         setBook((values) => ({ ...values, [name]: value }));
