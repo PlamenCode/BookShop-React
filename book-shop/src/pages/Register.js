@@ -10,6 +10,11 @@ function Register() {
         repass: ''
     });
     const [hasError, setHasError] = useState(false);
+    const [errors, setErrors] = useState({
+        email: false,
+        password: false,
+        repass: false
+    })
     const navigate = useNavigate();
 
 
@@ -17,7 +22,12 @@ function Register() {
         event.preventDefault();
         try {
             if (inputs.email === '' || inputs.password === '' || inputs.repass === '') {
+                setErrors({ email: true, password: true, repass: true });
                 throw ('All fields are required');
+            };
+            if(inputs.password !== inputs.repass){
+                setErrors({ email: false, password: true, repass: true });
+                throw ("Passwords don't match.");
             }
             const options = {
                 method: 'POST',
@@ -27,12 +37,20 @@ function Register() {
             fetch('http://localhost:4200/ReactDef/auth/register', options)
                 .then(res => res.json())
                 .then(data => {
+                    if (data.message) {
+                        throw data;
+                    }
                     localStorage.setItem('auth', data.token);
                     localStorage.setItem('userId', data.userId);
                     setInputs({});
                     navigate('/');
                 })
-                .catch(err => console.log(err.message))
+                .catch(err => {
+                    if(err.email){
+                        setErrors({ email: true, password: false, repass: false });
+                    }
+                    setHasError(err.message);
+                })
         } catch (error) {
             setHasError(error);
         }
@@ -53,19 +71,19 @@ function Register() {
                 <div className="input">
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" placeholder="example@gmail.com" 
-                    onChange={changeHandler} className={hasError ? 'error' : ''} />
+                    onChange={changeHandler} className={hasError && errors['email'] ? 'error' : ''} />
                 </div>
 
                 <div className="input">
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" placeholder="******" 
-                    onChange={changeHandler} className={hasError ? 'error' : ''} />
+                    onChange={changeHandler} className={hasError && errors['password'] ? 'error' : ''} />
                 </div>
 
                 <div className="input">
                     <label htmlFor="repass">Repeat-Password</label>
                     <input type="password" name="repass" placeholder="******" 
-                    onChange={changeHandler} className={hasError ? 'error' : ''} />
+                    onChange={changeHandler} className={hasError && errors['repass'] ? 'error' : ''} />
                 </div>
 
                 <div>

@@ -31,7 +31,6 @@ function Edit() {
     }, [])
 
     const changeHandler = (event) => {
-        event.preventDefault();
         const name = event.target.name;
         const value = event.target.value;
 

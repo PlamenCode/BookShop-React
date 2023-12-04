@@ -27,7 +27,7 @@ authController.post('/register', async (req, res) => {
         res.status(200).json(result);
     } catch (err) {
         const message = parseError(err)
-        res.status(400).json({ message });
+        res.status(400).json({ message, email: true });
     }
 });
 
