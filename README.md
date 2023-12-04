@@ -9,12 +9,12 @@ To run the BookShop project locally, follow these steps:
 1.Clone the repository from 
 GitHub: git clone <https://github.com/PlamenCode/BookShop-React>
 
-2.Install the necessary dependencies:
+2.Install the necessary dependencies in book-shop folder:
 
     npm install
 
 3.Set up the database:
-Run the RestService inside the repository: 
+Run the RestService inside the repository (Rest-React): 
 
     1.npm install 
     2.npm start
