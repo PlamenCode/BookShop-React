@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '../components/Error-Alert';
 require('../styles/Register.css');
 
-function Register() {
+function Register({ changeState }) {
     const [inputs, setInputs] = useState({
         email: '',
         password: '',
@@ -42,6 +42,7 @@ function Register() {
                     }
                     localStorage.setItem('auth', data.token);
                     localStorage.setItem('userId', data.userId);
+                    changeState(true);
                     setInputs({});
                     navigate('/');
                 })

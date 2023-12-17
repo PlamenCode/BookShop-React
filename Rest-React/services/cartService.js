@@ -49,9 +49,9 @@ async function getAllBooksInCart(userId) {
     }
 };
 
-async function checkBookInCart(userId, bookId){
-    const cart = await Cart.findOne({ ownerId: userId }).lean();
-    if(cart.bookIds.map(x => x.toString()).includes(bookId.toString())){
+async function checkBookInCart(ownerId, bookId){
+    const cart = await Cart.findOne({ ownerId }).lean();
+    if(cart && cart.bookIds.map(x => x.toString()).includes(bookId.toString())){
         return true;
     } else {
         return false;

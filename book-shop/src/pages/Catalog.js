@@ -14,7 +14,7 @@ function Catalog(){
             .catch((err) => {
                 console.log(err.message);
             })
-    }, []);
+    }, [books]);
 
     return(
         <div className="catalog">

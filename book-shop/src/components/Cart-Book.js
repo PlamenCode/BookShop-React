@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import noImg from '../assets/noImg.jpg';
 
 function CartBook( book ){
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ function CartBook( book ){
         <div className="cart">
         <div className="cart-container">
             <div className="cart-img">
-                <img src={book.img} alt="" />
+                <img src={book.img} alt={noImg} />
             </div>
 
             <h3>{ book.name }</h3>

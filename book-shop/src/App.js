@@ -27,7 +27,7 @@ function App() {
     } else{
         setIsLoggedIn(false)
     }
-  }, [])
+  }, [isLoggedIn])
   return (
       <div className="App">
           <Navbar isLoggedIn={isLoggedIn} changeState={changeState} />
